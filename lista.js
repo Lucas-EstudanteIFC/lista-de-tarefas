@@ -1,25 +1,19 @@
 let tarefa = document.getElementById("descricao");
-let adicionar = document.getElementById("adicionar")
 let listaPendentes = document.querySelector("#pendentes");
 let listaFinalizadas = document.querySelector("#finalizadas");
-let finalizar = document.getElementById("finalizar");
-let pendente;
 
 //Funções
+let adicionar = document.getElementById("adicionar");
 adicionar.addEventListener("click", function () {
-    listaPendentes.appendChild(document.createElement("li")).innerHTML = tarefa.value;
+    if (tarefa.value != "") {
+        let item = document.createElement("li");
+        item.innerHTML = tarefa.value + "<button class = 'p-15' onclick='removerItem(this);'>Finalizar</button>";
+        listaPendentes.appendChild(item);
+    }
 });
 
-function removerItem(a) {
-    a.innerHTML = "";
+function removerItem(item) {
+    let item_finalizado = item.parentNode;
+    listaPendentes.removeChild(item_finalizado);
+    listaFinalizadas.appendChild(item_finalizado);
 }
-
-
-finalizar.addEventListener("click", function () {
-    if (listaPendentes.innerHTML != "") {
-        listaFinalizadas.appendChild(document.createElement('li')).innerHTML = tarefa.value;
-        removerItem(listaPendentes);
-    }
-}
-);
-

@@ -1,1 +1,9 @@
 @charset "UTF-8";
+
+button {
+    margin-left: 5px;
+}
+
+#finalizadas li button {
+    display: none;
+}
